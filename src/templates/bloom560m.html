@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bloom</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-3">Bloom 560m</h1>
+        <form action="/" method='GET'>
+            <input class="btn btn-primary" type="submit" value="home" style="width: 120px;height: 30px;"><br>
+        </form>
+    </div>
+    <div class="container">
+        <h4 class="display-3">Request string: {{ request_string }}</h4><br>
+        <h4 class="display-3">Length: {{ result_length }}</h4><br>
+        <h4 class="display-3">Search: {{ search_mode }}</h4><br>
+        <h3 class="display-3">Response: </h3><br>
+        <div class="container">
+            {% for para in result %}
+            <h3>{{para}}</h3>
+            {% endfor %}
+        </div>
+        <form action="/bloom560m/request" method='POST'>
+            <div class="container">
+                <label class="form-label" for="request_string">Request</label><br>
+                <textarea class="form-control" id="request_string" name="request_string" rows="12" cols="50"></textarea><br>
+            </div>
+            <div class="container">
+                <label class="form-label" for="result_length">Result length</label><br>
+                <input class="form-control" type="number" id="result_length" name="result_length" value=50 min="10" max="500"><br>
+            </div>
+            <div class="container">
+                <label class="form-label" for="search_mode">Choose search mode:</label>
+                <select class="form-control" id="search_mode" name="search_mode">
+                  <option value="BEAM_SEARCH">Beam search</option>
+                  <option value="GREEDY_SEARCH">Greedy search</option>
+                  <option value="SAMPLING_TOP_SEARCH">Sampling top-k top-p search</option>
+                </select> 
+            </div>
+            <div class="container">
+                <input type="submit" value="Submit" class="btn btn-primary" style="width: 80px;height: 30px;"><br>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

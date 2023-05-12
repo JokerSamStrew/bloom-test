@@ -1,0 +1,3 @@
+[submodule "bloom-560m"]
+	path = bloom-560m
+	url = https://huggingface.co/bigscience/bloom-560m
